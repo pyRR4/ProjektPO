@@ -81,6 +81,7 @@ form h2 {
     width: 100%;
     padding: 10px;
     font-size: 1.1em;
+    text-align: center;
     color: #fff;
     background-color: #4a4aff;
     border: none;
@@ -91,4 +92,25 @@ form h2 {
 .submit-button:hover {
     background-color: #3b3bcc;
 }
+
+.edit-delete-button {
+    display: block;
+    width: 100%;
+    padding: 7px;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+    background-color: #3d3d3d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-delete-button:hover {
+    background-color: #858484;
+}
+
+.button-container {
+    display: flex;
+  }
 
