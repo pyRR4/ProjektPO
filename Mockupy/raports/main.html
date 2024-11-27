@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Statistics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="polish-coat-of-arms.png" alt="Logo" class="logo" />
+        <div class="ministry">
+          <p>Ministerstwo<br />Spraw<br />Zagranicznych</p>
+        </div>
+      </header>
+      <main>
+        <h1>Travel Statistics</h1>
+        <form id="filter-form">
+          <div class="input-group">
+            <label for="start-date">Start Date</label>
+            <input type="date" id="start-date" name="start-date" required />
+          </div>
+          <div class="input-group">
+            <label for="end-date">End Date</label>
+            <input type="date" id="end-date" name="end-date" required />
+          </div>
+          <div class="input-group">
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="">All</option>
+              <option value="Poland">Poland</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="USA">USA</option>
+            </select>
+          </div>
+          <button type="submit" class="register-button">
+            Generate Statistics
+          </button>
+        </form>
+        <div id="report-results" class="report-container">
+          <h2>Report Results</h2>
+          <table id="report-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Number of Travels</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

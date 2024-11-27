@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Parameters</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="polish-coat-of-arms.png" alt="Logo" class="logo" />
+        <div class="ministry">
+          <p>Ministerstwo<br />Spraw<br />Zagranicznych</p>
+        </div>
+      </header>
+      <main>
+        <h1 id="main-title">Set params Menu</h1>
+        <div class="button-group">
+          <button
+            class="register-button"
+            onclick="toggleForm('travels-archive')"
+          >
+            Set parameter for Travels Archive
+          </button>
+          <button
+            class="register-button secondary-button"
+            onclick="toggleForm('alerts-updates')"
+          >
+            Set parameter for Alerts Updates
+          </button>
+        </div>
+        <div id="travels-archive" class="form-container" style="display: none">
+          <h2>Set parameter for Travels Archive</h2>
+          <form onsubmit="return validateDays()" id="travels-form">
+            <label for="days-archive">Enter number of days:</label>
+            <input
+              type="number"
+              id="days-archive"
+              name="days"
+              placeholder="e.g., 30"
+              required
+            />
+            <small id="days-error" class="error-message"></small>
+            <small id="old-days" class="old-value"></small>
+            <button type="submit" class="register-button">
+              Save Parameter
+            </button>
+          </form>
+        </div>
+        <div id="alerts-updates" class="form-container" style="display: none">
+          <h2>Set parameter for Alerts Updates</h2>
+          <form onsubmit="return validateHours()" id="alerts-form">
+            <label for="hours-alerts">Enter number of hours:</label>
+            <input
+              type="number"
+              id="hours-alerts"
+              name="hours"
+              placeholder="e.g., 12"
+              required
+            />
+            <small id="hours-error" class="error-message"></small>
+            <small id="old-hours" class="old-value"></small>
+            <button type="submit" class="register-button">
+              Save Parameter
+            </button>
+          </form>
+        </div>
+        <div id="success-message" style="display: none; margin-top: 20px">
+          <p id="response-message" style="color: green; font-weight: bold"></p>
+        </div>
+      </main>
+    </div>
+    <script>
+      const storageKey = "parameters";
+
+      // Inicjalizacja pamięci lokalnej
+      const loadStoredValues = () => {
+        const stored = localStorage.getItem(storageKey);
+        return stored ? JSON.parse(stored) : { days: null, hours: null };
+      };
+
+      const saveStoredValues = (data) => {
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      };
+
+      const updateOldValues = () => {
+        const { days, hours } = loadStoredValues();
+        if (days) {
+          document.getElementById(
+            "old-days"
+          ).textContent = `Previous value: ${days} days`;
+        }
+        if (hours) {
+          document.getElementById(
+            "old-hours"
+          ).textContent = `Previous value: ${hours} hours`;
+        }
+      };
+
+
+      function toggleForm(formId) {
+        document.querySelectorAll(".form-container").forEach((form) => {
+          form.style.display = "none";
+        });
+        document.getElementById("success-message").style.display = "none";
+        document.getElementById(formId).style.display = "block";
+        updateOldValues();
+      }
+
+      // Walidacja dla Travels Archive (dni > 30)
+      function validateDays() {
+        const daysInput = document.getElementById("days-archive");
+        const errorMessage = document.getElementById("days-error");
+        const days = parseInt(daysInput.value, 10);
+
+        if (isNaN(days) || days <= 30) {
+          errorMessage.textContent = "Please enter a number greater than 30.";
+          daysInput.focus();
+          return false;
+        }
+
+        errorMessage.textContent = "";
+        const params = loadStoredValues();
+        params.days = days;
+        saveStoredValues(params);
+        clearForm("travels-form"); // Wyczyść pole formularza
+        showSuccessMessage(
+          `Parameter for Travels Archive set to ${days} days.`
+        );
+        return false; // Prevent form submission
+      }
+
+      // Walidacja dla Alerts Updates (godziny < 12 i > 0)
+      function validateHours() {
+        const hoursInput = document.getElementById("hours-alerts");
+        const errorMessage = document.getElementById("hours-error");
+        const hours = parseInt(hoursInput.value, 10);
+
+        if (isNaN(hours) || hours <= 0 || hours >= 12) {
+          errorMessage.textContent = "Please enter a number between 1 and 11.";
+          hoursInput.focus();
+          return false;
+        }
+
+        errorMessage.textContent = "";
+        const params = loadStoredValues();
+        params.hours = hours;
+        saveStoredValues(params);
+        clearForm("alerts-form"); // Wyczyść pole formularza
+        showSuccessMessage(
+          `Parameter for Alerts Updates set to ${hours} hours.`
+        );
+        return false; // Prevent form submission
+      }
+
+      // Funkcja do wyświetlania wiadomości o sukcesie
+      function showSuccessMessage(message) {
+        document.querySelectorAll(".form-container").forEach((form) => {
+          form.style.display = "none";
+        });
+        const responseMessage = document.getElementById("response-message");
+        responseMessage.textContent = message;
+        const successMessageDiv = document.getElementById("success-message");
+        successMessageDiv.style.display = "block";
+
+        // Automatyczny powrót do startowego widoku po 5 sekundach
+        setTimeout(() => {
+          successMessageDiv.style.display = "none";
+          document.getElementById("main-title").textContent = "Hello, Admin";
+        }, 5000);
+      }
+
+      // Funkcja do czyszczenia formularzy
+      function clearForm(formId) {
+        const form = document.getElementById(formId);
+        form.reset(); // Czyści wszystkie pola formularza
+        form
+          .querySelectorAll(".error-message")
+          .forEach((error) => (error.textContent = ""));
+      }
+
+      document.addEventListener("DOMContentLoaded", updateOldValues);
+    </script>
+    <style>
+      /* Error message styling */
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+        display: block;
+      }
+
+      .old-value {
+        display: block;
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+    </style>
+  </body>
+</html>
