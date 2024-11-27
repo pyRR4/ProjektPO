@@ -77,11 +77,25 @@ main h1 {
   border-radius: 5px;
 }
 
+<<<<<<< HEAD:Mockupy/styles/style.css
 .input-group small {
   display: block;
   margin-top: 5px;
   font-size: 0.8em;
   color: #666;
+=======
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    text-align: center;
+    color: #fff;
+    background-color: #4a4aff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+>>>>>>> fbfb1c38d1843d94d8e81ae3903c719d66f2d64c:Mockupy/RegisterTravelUseCase/styles/style.css
 }
 
 .actions {
@@ -89,6 +103,7 @@ main h1 {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD:Mockupy/styles/style.css
 .actions .forgot-password {
   font-size: 0.9em;
   color: #007bff;
@@ -155,3 +170,26 @@ footer .links a {
 footer .links a:hover {
   text-decoration: underline;
 }
+=======
+.edit-delete-button {
+    display: block;
+    width: 100%;
+    padding: 7px;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+    background-color: #3d3d3d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-delete-button:hover {
+    background-color: #858484;
+}
+
+.button-container {
+    display: flex;
+  }
+
+>>>>>>> fbfb1c38d1843d94d8e81ae3903c719d66f2d64c:Mockupy/RegisterTravelUseCase/styles/style.css
