@@ -81,6 +81,10 @@ body {
     margin: 10px;
   }
   
+  .filter-group {
+    display: none; /* Ukrycie filtra przed wygenerowaniem raportu */
+  }
+  
   #report-results {
     padding: 20px;
   }
