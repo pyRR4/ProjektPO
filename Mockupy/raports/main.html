@@ -3,58 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Statistics</title>
+    <title>Travel Statistics Report</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <header>
         <img src="polish-coat-of-arms.png" alt="Logo" class="logo" />
-        <div class="ministry">
-          <p>Ministerstwo<br />Spraw<br />Zagranicznych</p>
-        </div>
+        <div class="ministry">Ministerstwo Spraw Zagranicznych</div>
       </header>
+
       <main>
-        <h1>Report</h1>
+        <h1>Generate Travel Report</h1>
+
+        <!-- Formularz -->
         <form id="filter-form">
           <div class="input-group">
-            <label for="start-date">Start Date</label>
+            <label for="start-date">Arrival Date (Start)</label>
             <input type="date" id="start-date" name="start-date" required />
           </div>
           <div class="input-group">
-            <label for="end-date">End Date</label>
+            <label for="end-date">Departure Date (End)</label>
             <input type="date" id="end-date" name="end-date" required />
           </div>
-          <div class="input-group">
-            <label for="country">Country</label>
-            <select id="country" name="country">
-              <option value="">All</option>
-              <option value="Poland">Poland</option>
-              <option value="Germany">Germany</option>
-              <option value="France">France</option>
-              <option value="USA">USA</option>
-            </select>
-          </div>
           <button type="submit" class="register-button">Generate Report</button>
-          <button type="button" id="download-button" class="register-button">
-            Download Report
-          </button>
+          <button type="button" id="refresh-button">Wróć</button>
         </form>
-        <div id="report-results" class="report-container">
-          <h2>Report Results</h2>
+
+        <!-- Filtracja według kraju -->
+        <div id="country-filter" class="filter-group">
+          <label for="filter-country">Filter by Country:</label>
+          <select id="filter-country">
+            <option value="">All</option>
+          </select>
+          <button id="filter-button">Apply Filter</button>
+        </div>
+
+        <!-- Tabela z wynikami -->
+        <div id="report-results">
+          <h2>Travel Report</h2>
           <table id="report-table">
             <thead>
               <tr>
-                <th>Month</th>
-                <th>Year</th>
-                <th>Number of Travels</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Organizer</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
       </main>
+
+      <footer>&copy; 2024 Ministerstwo Spraw Zagranicznych</footer>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
