@@ -82,4 +82,38 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
       `;
     tbody.appendChild(row);
   });
+  document.getElementById("download-button").disabled = false;
 });
+
+document
+  .getElementById("download-button")
+  .addEventListener("click", function () {
+    const table = document.getElementById("report-table");
+    const rows = table.getElementsByTagName("tr");
+
+    let csvContent = "Month,Year,Number of Travels\n";
+
+    for (let i = 1; i < rows.length; i++) {
+      const cells = rows[i].getElementsByTagName("td");
+      const rowData = [
+        cells[0].textContent,
+        cells[1].textContent,
+        cells[2].textContent,
+      ];
+      csvContent += rowData.join(",") + "\n";
+    }
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", "travel_statistics.csv");
+    link.style.visibility = "hidden";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+document.getElementById("download-button").disabled = true;

@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+.register-button {
+    margin-right: 10px;
+}
+
+.register-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* General styling */
 body {
     font-family: Arial, sans-serif;
