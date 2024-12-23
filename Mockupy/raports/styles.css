@@ -28,12 +28,13 @@ body {
   }
   
   header .logo {
-    height: 50px;
+    height: 48px;
   }
   
   header .ministry {
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-style: italic;
     text-align: right;
   }
   

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulate Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100 p-10">
+    <div class="container mx-auto bg-white shadow-lg rounded-xl">
+    <header class="flex justify-between items-center bg-blue-700 text-white p-4 rounded-t-xl">
+      <img src="./images/polish-coat-of-arms.png" alt="Logo" class="h-12 w-auto" />
+      <span class="italic text-sm">
+        <p>Ministerstwo</p>
+        <p>Spraw</p>
+        <p>Zagranicznych</p>
+      </span>
+    </header>
+    <div class="container mx-auto bg-white shadow-lg rounded-b-xl p-6">
+      <h1 class="text-2xl font-bold text-center text-blue-500">Consulate Management System</h1>
+
+      <section class="mt-6 bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold text-blue-500">Add Consulate</h2>
+        <form class="mt-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" placeholder="  Enter consulate name" class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Code</label>
+              <input type="text" placeholder="  Enter consulate code" class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-sm font-medium text-gray-700">Country</label>
+              <select class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="" disabled selected>Select a country</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="Germany">Germany</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end mt-4 gap-4">
+            <button type="reset" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Reset</button>
+            <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800">Save</button>
+          </div>
+        </form>
+      </section>
+
+
+      <section class="mt-6 bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold text-blue-500">Consulate List</h2>
+        <form class="mt-4">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Country</label>
+              <select class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="" disabled selected>Select a country</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="Germany">Germany</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end mt-4 gap-4">
+            <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800">Filter</button>
+          </div>
+        </form>
+
+        <div class="p-6"></div>
+        <table class="table-auto w-full mt-4 border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-blue-700 text-white">
+              <th class="border border-gray-300 px-4 py-2">#</th>
+              <th class="border border-gray-300 px-4 py-2">Name</th>
+              <th class="border border-gray-300 px-4 py-2">Code</th>
+              <th class="border border-gray-300 px-4 py-2">Country</th>
+              <th class="border border-gray-300 px-4 py-2"></th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="hover:bg-gray-100">
+              <td class="border border-gray-300 px-4 py-2">1</td>
+              <td class="border border-gray-300 px-4 py-2">Consulate A</td>
+              <td class="border border-gray-300 px-4 py-2">US001</td>
+              <td class="border border-gray-300 px-4 py-2">USA</td>
+              <td class="border border-gray-300 px-4 py-2 flex justify-end gap-2">
+                <a class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600" href="./edit.html">Edit</a>
+                <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      
+      <!-- Footer -->
+      <footer class="mt-6 text-center text-gray-500 text-sm">
+        &copy; 2024 Ministerstwo Spraw Zagranicznych
+      </footer>
+    </div>
+   </div>  
+  </body>
+</html>
