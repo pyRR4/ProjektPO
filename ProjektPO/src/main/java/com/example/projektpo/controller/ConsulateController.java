@@ -25,6 +25,9 @@ public class ConsulateController {
     @GetMapping
     public String getConsulates(Model model) {
         List<ConsulateDTO> consulates = consulateService.getAllConsulates();
+
+
+        return "";
     }
 
 }

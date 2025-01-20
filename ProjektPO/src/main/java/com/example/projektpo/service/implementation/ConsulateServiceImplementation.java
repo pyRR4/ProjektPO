@@ -24,9 +24,9 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
 
     @Autowired
     public ConsulateServiceImplementation(
-            ConsulateRepository consulateRepository,
-            ConsulateMapper consulateMapper,
-            CountryRepository countryRepository) {
+            final ConsulateRepository consulateRepository,
+            final ConsulateMapper consulateMapper,
+            final CountryRepository countryRepository) {
         this.consulateRepository = consulateRepository;
         this.consulateMapper = consulateMapper;
         this.countryRepository = countryRepository;
