@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 )
 public class Consulate {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

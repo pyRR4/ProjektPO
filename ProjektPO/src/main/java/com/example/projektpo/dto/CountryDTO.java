@@ -1,4 +1,10 @@
 package com.example.projektpo.dto;
 
-public record CountryDTO() {
+import java.util.List;
+
+public record CountryDTO(
+        int id,
+        String name,
+        List<ConsulateDTO> consulates
+) {
 }
