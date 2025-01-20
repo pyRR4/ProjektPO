@@ -5,6 +5,8 @@ import com.example.projektpo.entity.Consulate;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ConsulateMapper {
 
@@ -13,4 +15,10 @@ public interface ConsulateMapper {
 
     @Mapping(target = "country", ignore = true)
     Consulate toEntity(ConsulateDTO consulateDTO);
+
+    default List<ConsulateDTO> toDTOList(List<Consulate> consulates) {
+        return consulates.stream()
+                .map(this::toDTO)
+                .toList();
+    }
 }

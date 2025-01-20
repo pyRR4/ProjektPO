@@ -1,4 +1,8 @@
 package com.example.projektpo.service.implementation;
 
-public class CountryServiceImplementation {
+import com.example.projektpo.service.contract.CountryServiceContract;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CountryServiceImplementation implements CountryServiceContract {
 }

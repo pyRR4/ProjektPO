@@ -1,4 +1,8 @@
 package com.example.projektpo.service.implementation;
 
-public class ParameterServiceImplementation {
+import com.example.projektpo.service.contract.ParameterServiceContract;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ParameterServiceImplementation implements ParameterServiceContract {
 }
