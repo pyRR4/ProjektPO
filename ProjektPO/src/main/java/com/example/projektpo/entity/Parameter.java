@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,8 +27,8 @@ public class Parameter {
     private BigDecimal value;
 
     @Column(nullable = false)
-    private Date updated_at;
+    private LocalDateTime updated_at;
 
     @Column(nullable = false)
-    private Date created_at;
+    private LocalDateTime created_at;
 }

@@ -1,14 +1,13 @@
 package com.example.projektpo.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record ParameterDTO (
         int id,
         String name,
         BigDecimal value,
-        Date created_at,
-        Date updated_at
+        LocalDateTime created_at,
+        LocalDateTime updated_at
 ) {
-
 }
