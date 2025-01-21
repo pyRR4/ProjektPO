@@ -20,7 +20,7 @@ public class Consulate {
     private int id;
 
     @Column(unique = true, nullable = false)
-    private String name;
+    private String code;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, referencedColumnName = "id")

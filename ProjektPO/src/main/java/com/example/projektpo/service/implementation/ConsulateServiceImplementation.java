@@ -68,12 +68,12 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     @Override
     public ConsulateDTO updateConsulate(ConsulateDTO consulateDTO) {
         Consulate existingConsulate = consulateRepository.findById(consulateDTO.id())
-                .orElseThrow(() -> new ConsulateNotFound(consulateDTO.name()));
+                .orElseThrow(() -> new ConsulateNotFound(consulateDTO.code()));
 
         Country consulateDTOCountry = countryRepository.findById(consulateDTO.countryId())
                 .orElseThrow(() -> new CountryNotFound(consulateDTO.countryId()));
 
-        existingConsulate.setName(consulateDTO.name());
+        existingConsulate.setCode(consulateDTO.code());
         existingConsulate.setCountry(consulateDTOCountry);
 
         return consulateMapper.toDTO(consulateRepository.save(existingConsulate));

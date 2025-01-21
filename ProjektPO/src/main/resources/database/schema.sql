@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset igor_podg:2
+--changeset igor_podg:3
 
 CREATE TABLE IF NOT EXISTS countries (
     id SERIAL PRIMARY KEY,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS countries (
 
 CREATE TABLE IF NOT EXISTS consulates (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
+    code VARCHAR(255) NOT NULL UNIQUE,
     country INTEGER NOT NULL REFERENCES countries(id) ON DELETE CASCADE
 );
 
