@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+    <!-- Ścieżka do stylów -->
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <script src="/scripts/sendmessage.js"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <!-- Ścieżka do obrazka -->
+        <img th:src="@{/images/polish-coat-of-arms.png}" alt="Polish coat of arms" class="logo">
+        <h1>Send Message</h1>
+        <div class="ministry">
+            <p>Ministerstwo<br>Spraw<br>Zagranicznych</p>
+        </div>
+    </header>
+    <form class="form" id="message-form" th:action="@{/sendmessage}" method="post">
+    <section class="message-contents">
+            <h2>Message Contents</h2>
+            <div class="input-group">
+                <label for="message">Message</label>
+                <input type="text" id="message" name="content" placeholder="Enter your message..." required>
+            </div>
+        </section>
+
+        <section class="recipients">
+            <h2>Recipients</h2>
+            <div class="input-group">
+                <label for="country">Send to all Clients in Country:</label>
+                <select id="country" name="country">
+                    <option value="all" selected>All Available</option>
+                    <option value="poland">Poland</option>
+                    <option value="germany">Germany</option>
+                    <option value="france">France</option>
+                </select>
+            </div>
+        </section>
+
+        <br><br>
+
+        <button class="submit-button" type="submit" style="margin-bottom: 10px;">Send Message</button>
+    </form>
+    <footer>
+        <p>© 2024 MSZ. All rights reserved.</p>
+        <nav>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </nav>
+    </footer>
+</div>
+</body>
+</html>

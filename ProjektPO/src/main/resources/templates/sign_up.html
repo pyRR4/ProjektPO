@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../static/images/polish-coat-of-arms.png" alt="Polish coat of arms" class="logo">
+            <h1>Sign Up</h1>
+            <div class="ministry">
+                <p>Ministerstwo<br>Spraw<br>Zagranicznych</p>
+            </div>
+        </header>
+        <form class="form">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="Enter your first name(s)">
+            </div>
+            <div class="input-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Enter your last name">
+            </div>
+            <div class="input-group">
+                <label for="pesel">PESEL Number</label>
+                <input type="text" id="pesel" placeholder="Enter your PESEL">
+            </div>
+            <div class="input-group">
+                <label for="country">Country</label>
+                <select id="country">
+                    <option value="" disabled selected>Choose your country...</option>
+                    <option value="poland">Poland</option>
+                    <option value="germany">Germany</option>
+                    <option value="france">France</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="city">City/County</label>
+                <input type="text" id="city" placeholder="Enter your city's/county's name">
+            </div>
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address">
+            </div>
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number eg. +48 000 000 000">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="input-group">
+                <label for="repeat-password">Repeat Password</label>
+                <input type="password" id="repeat-password" placeholder="Repeat your password">
+            </div>
+            <a href="greetings.html" class="submit-button" id="signup">Sign Up</a>
+        </form>
+        <footer>
+            <p>© 2024 MSZ. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="../static/scripts/signup.js"></script>
+
+</body>
+</html>

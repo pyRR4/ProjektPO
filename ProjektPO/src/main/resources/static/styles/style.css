@@ -1,0 +1,112 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header .logo {
+  width: 60px;
+  height: auto;
+}
+
+header h1 {
+  font-size: 1.8em;
+}
+
+header .ministry p {
+  text-align: right;
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+
+form .form section {
+  margin-bottom: 20px;
+}
+
+form h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1em;
+  color: #fff;
+  text-align: center;
+  background-color: #4a4aff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #3b3bcc;
+}
+
+.edit-delete-button {
+  display: block;
+  width: 100%;
+  padding: 7px;
+  font-size: 0.8em;
+  text-align: center;
+  color: #fff;
+  background-color: #3d3d3d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-delete-button:hover {
+  background-color: #858484;
+}
+
+.button-container {
+  display: flex;
+}
