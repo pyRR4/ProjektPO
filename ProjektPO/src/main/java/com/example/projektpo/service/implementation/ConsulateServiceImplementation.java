@@ -68,13 +68,7 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
         Country country = countryRepository.findByName(consulateDTO.countryName())
                         .orElseThrow(() -> new CountryNotFound(consulateDTO.countryName()));
 
-        logger.debug(country.toString());
-        logger.debug(consulate.toString());
-
         consulate.setCountry(country);
-
-        logger.debug(country.toString());
-        logger.debug(consulate.toString());
 
         Consulate savedConsulate = consulateRepository.save(consulate);
 

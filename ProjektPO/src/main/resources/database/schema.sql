@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset igor_podg:4
+--changeset igor_podg:5
 
 CREATE TABLE IF NOT EXISTS countries (
     id SERIAL PRIMARY KEY,
@@ -20,19 +20,8 @@ CREATE TABLE IF NOT EXISTS parameters (
     created_at DATE NOT NULL DEFAULT NOW()
 );
 
-INSERT INTO countries (name) VALUES
-    ('USA'),
-    ('Canada'),
-    ('Germany'),
-    ('France'),
-    ('Italy'),
-    ('United Kingdom'),
-    ('Australia'),
-    ('Japan'),
-    ('China'),
-    ('India');
-
-
-INSERT INTO parameters (name, value) VALUES
-    ('Warning download frequency', 5),
-    ('Travel delete frequency', 30);
+CREATE TABLE IF NOT EXISTS warnings (
+    id SERIAL PRIMARY KEY,
+    country INTEGER NOT NULL REFERENCES countries(id) ON DELETE CASCADE,
+    description VARCHAR(255) NOT NULL
+);

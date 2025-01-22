@@ -7,5 +7,6 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
     <!-- Włącz wszystkie zmiany z katalogu 'database' -->
-    <includeAll path="database" />
+    <include file="database/schema.sql" />
+    <include file="database/seed.sql" />
 </databaseChangeLog>
