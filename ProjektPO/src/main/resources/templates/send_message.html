@@ -32,13 +32,14 @@
             <div class="input-group">
                 <label for="country">Send to all Clients in Country:</label>
                 <select id="country" name="country">
-                    <option value="all" selected>All Available</option>
-                    <option value="poland">Poland</option>
-                    <option value="germany">Germany</option>
-                    <option value="france">France</option>
+                    <option value="All" selected>All Available</option>
+                    <option th:each="country : ${countries}"
+                            th:value="${country.getName()}"
+                            th:text="${country.getName()}"></option>
                 </select>
             </div>
         </section>
+
 
         <br><br>
 

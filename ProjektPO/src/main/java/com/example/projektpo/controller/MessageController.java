@@ -1,6 +1,8 @@
 package com.example.projektpo.controller;
 
+import com.example.projektpo.model.Country;
 import com.example.projektpo.model.Message;
+import com.example.projektpo.service.CountryService;
 import com.example.projektpo.service.MessageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,15 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Controller
 @RequestMapping("/")
 public class MessageController {
     private final MessageService service;
+    private final CountryService countryService;
 
-    public MessageController(MessageService service) {
+    public MessageController(MessageService service, CountryService countryService) {
         this.service = service;
+        this.countryService = countryService;
     }
 
     @GetMapping("/greetemp")
@@ -26,10 +31,12 @@ public class MessageController {
     }
 
     @GetMapping("/sendmessage")
-    public String sendMessage() {
-        System.out.println("Sending Message");
+    public String sendMessage(Model model) {
+        List<Country> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
         return "send_message";
     }
+
 
     @PostMapping("/sendmessage")
     public String sendMessage(@RequestParam String content) {
