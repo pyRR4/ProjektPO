@@ -1,4 +1,4 @@
-package com.example.projektpo;
+package com.example.projektpo.oldentities;
 
 import jakarta.persistence.*;
 import lombok.*;

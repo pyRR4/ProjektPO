@@ -1,8 +1,7 @@
-package com.example.projektpo;
+package com.example.projektpo.oldentities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Administrator extends User {
+public class ConsulateEmployee extends User{
     @Column(nullable = false)
     private String firstName;
 
@@ -22,4 +21,7 @@ public class Administrator extends User {
 
     @Column(nullable = false)
     private String phoneNumber;
+
+    @Column(nullable = false)
+    private int consulateId;
 }

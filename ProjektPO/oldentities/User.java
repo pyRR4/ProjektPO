@@ -1,26 +1,22 @@
-package com.example.projektpo;
+package com.example.projektpo.oldentities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Warning {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
     private int id;
 
     @Column(nullable = false)
-    private int countryId;
+    private String email;
 
     @Column(nullable = false)
-    private String warningContent;
+    private String password;
 
 }

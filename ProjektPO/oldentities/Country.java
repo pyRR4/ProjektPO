@@ -1,4 +1,4 @@
-package com.example.projektpo;
+package com.example.projektpo.oldentities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Consulate {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
     private int id;
 
     @Column(nullable = false)
-    private int countryId;
+    private String name;
 
 }
