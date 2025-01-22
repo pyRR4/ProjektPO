@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record ParameterDTO (
-        int id,
+        Integer id,
         String name,
         BigDecimal value,
         LocalDateTime created_at,

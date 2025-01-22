@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulate Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 p-10">
+<div class="container mx-auto bg-white shadow-lg rounded-xl">
+    <header class="flex justify-between items-center bg-blue-700 text-white p-4 rounded-t-xl">
+        <img src="./images/polish-coat-of-arms.png" alt="Logo" class="h-12 w-auto" />
+        <span class="italic text-sm">
+          <p>Ministerstwo</p>
+          <p>Spraw</p>
+          <p>Zagranicznych</p>
+        </span>
+    </header>
+
+    <div class="container mx-auto bg-white shadow-lg rounded-b-xl p-6">
+        <h1 class="text-2xl font-bold text-center text-blue-500">Consulate Management System</h1>
+
+
+        <section class="mt-6 bg-gray-100 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold text-blue-500">Add Consulate</h2>
+            <form class="mt-4" th:action="@{/consulates/create}" th:object="${consulate}" th:method="post">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Code</label>
+                        <input type="text" name="code" th:field="${consulate.code}" th:placeholder="'Enter consulate code'" class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Country</label>
+                        <select name="country" th:field="${consulate.countryName}" class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="" disabled selected>Select a country</option>
+                            <option th:each="country : ${countries}" th:value="${country.name}" th:text="${country.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4 gap-4">
+                    <button type="reset" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Reset</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800">Save</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Consulate List Section -->
+        <section class="mt-6 bg-gray-100 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold text-blue-500">Consulate List</h2>
+            <form class="mt-4" th:action="@{/consulates/filter}" th:method="get">
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Country</label>
+                        <select name="filterCountry" class="w-full mt-1 border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="" disabled selected>Select a country</option>
+                            <option th:if="${not #lists.isEmpty(countries)}" th:each="country : ${countries}" th:value="${country.name()}" th:text="${country.name()}"></option>
+                            <option th:unless="${not #lists.isEmpty(countries)}">There are no countries!</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4 gap-4">
+                    <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800">Filter</button>
+                </div>
+            </form>
+
+            <table class="table-auto w-full mt-4 border-collapse border border-gray-300">
+                <thead>
+                <tr class="bg-blue-700 text-white">
+                    <th class="border border-gray-300 px-4 py-2">#</th>
+                    <th class="border border-gray-300 px-4 py-2">Code</th>
+                    <th class="border border-gray-300 px-4 py-2">Country</th>
+                    <th class="border border-gray-300 px-4 py-2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${not #lists.isEmpty(consulates)}" th:each="consulate : ${consulates}" class="hover:bg-gray-100">
+                    <td class="border border-gray-300 px-4 py-2" th:text="${consulate.id}"></td>
+                    <td class="border border-gray-300 px-4 py-2" th:text="${consulate.code}"></td>
+                    <td class="border border-gray-300 px-4 py-2" th:text="${consulate.countryName}"></td>
+                    <td class="border border-gray-300 px-4 py-2 flex justify-end gap-2">
+                        <a class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+                           th:href="@{/consulates/edit/{id}(id=${consulate.id})}">
+                            Edit
+                        </a>
+                        <form th:action="@{/consulates/delete/{id}(id=${consulate.id})}" method="post">
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr th:unless="${not #lists.isEmpty(consulates)}" class="text-center">
+                    <td colspan="6">
+                        <h1 class="text-3xl font-medium text-gray-700 py-4">There are no items!</h1>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+</body>
+</html>

@@ -1,8 +1,12 @@
 package com.example.projektpo.dto;
 
 public record ConsulateDTO(
-        int id,
+        Integer id,
         String code,
-        int countryId
+        String countryName
 ) {
+
+    public ConsulateDTO() {
+        this(0, "", "");
+    }
 }

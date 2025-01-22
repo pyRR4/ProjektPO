@@ -1,6 +1,7 @@
 package com.example.projektpo.service.contract;
 
 import com.example.projektpo.dto.ConsulateDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,5 +17,6 @@ public interface ConsulateServiceContract {
 
     ConsulateDTO updateConsulate(ConsulateDTO consulateDTO);
 
+    @Transactional
     void deleteConsulate(int id);
 }

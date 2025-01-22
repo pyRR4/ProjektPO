@@ -9,8 +9,11 @@ import com.example.projektpo.mappers.ConsulateMapper;
 import com.example.projektpo.repository.ConsulateRepository;
 import com.example.projektpo.repository.CountryRepository;
 import com.example.projektpo.service.contract.ConsulateServiceContract;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +23,8 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     private final ConsulateRepository consulateRepository;
     private final ConsulateMapper consulateMapper;
     private final CountryRepository countryRepository;
+
+    public static final Logger logger = LoggerFactory.getLogger(ConsulateServiceContract.class);
 
     @Autowired
     public ConsulateServiceImplementation(
@@ -60,9 +65,20 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     public ConsulateDTO createConsulate(ConsulateDTO consulateDTO) {
         Consulate consulate = consulateMapper.toEntity(consulateDTO);
 
-        consulateRepository.save(consulate);
+        Country country = countryRepository.findByName(consulateDTO.countryName())
+                        .orElseThrow(() -> new CountryNotFound(consulateDTO.countryName()));
 
-        return consulateMapper.toDTO(consulate);
+        logger.debug(country.toString());
+        logger.debug(consulate.toString());
+
+        consulate.setCountry(country);
+
+        logger.debug(country.toString());
+        logger.debug(consulate.toString());
+
+        Consulate savedConsulate = consulateRepository.save(consulate);
+
+        return consulateMapper.toDTO(savedConsulate);
     }
 
     @Override
@@ -70,8 +86,8 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
         Consulate existingConsulate = consulateRepository.findById(consulateDTO.id())
                 .orElseThrow(() -> new ConsulateNotFound(consulateDTO.code()));
 
-        Country consulateDTOCountry = countryRepository.findById(consulateDTO.countryId())
-                .orElseThrow(() -> new CountryNotFound(consulateDTO.countryId()));
+        Country consulateDTOCountry = countryRepository.findByName(consulateDTO.countryName())
+                .orElseThrow(() -> new CountryNotFound(consulateDTO.countryName()));
 
         existingConsulate.setCode(consulateDTO.code());
         existingConsulate.setCountry(consulateDTOCountry);
@@ -80,6 +96,7 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     }
 
 
+    @Transactional
     @Override
     public void deleteConsulate(int consulateId) {
         if (!consulateRepository.existsById(consulateId)) {

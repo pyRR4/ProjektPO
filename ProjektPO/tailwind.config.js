@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./crud_consulate/*.{html,js}"],
+  content: ["./src/main/resources/templates/**/*.html"],
   theme: {
     extend: {},
   },
