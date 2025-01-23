@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ParameterServiceContract {
 
-    ParameterDTO getParameter(int id);
+    int getParameterValueByName(String name);
 
     ParameterDTO getParameterByName(String name);
 

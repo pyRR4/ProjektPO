@@ -28,11 +28,11 @@ public class ParameterServiceImplementation implements ParameterServiceContract 
     }
 
     @Override
-    public ParameterDTO getParameter(int id) {
-        Parameter parameter = parameterRepository.findById(id)
-                .orElseThrow(() -> new ParameterNotFound(id));
+    public int getParameterValueByName(String name) {
+        Parameter parameter = parameterRepository.findByName(name)
+                .orElseThrow(() -> new ParameterNotFound(name));
 
-        return parameterMapper.toDTO(parameter);
+        return parameter.getValue().intValue();
     }
 
     @Override

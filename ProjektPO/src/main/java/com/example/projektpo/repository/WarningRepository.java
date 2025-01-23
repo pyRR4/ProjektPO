@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface WarningRepository extends JpaRepository<Warning, Integer> {
     Optional<Warning> findById(int id);
 
+    Optional<Warning> findByCountryCode(String countryCode);
+
     boolean existsById(int id);
 }

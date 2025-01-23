@@ -9,8 +9,16 @@ import com.example.projektpo.mappers.WarningMapper;
 import com.example.projektpo.repository.CountryRepository;
 import com.example.projektpo.repository.WarningRepository;
 import com.example.projektpo.service.contract.WarningServiceContract;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WarningServiceImplementation implements WarningServiceContract {
@@ -18,6 +26,7 @@ public class WarningServiceImplementation implements WarningServiceContract {
     private final WarningRepository warningRepository;
     private final WarningMapper warningMapper;
     private final CountryRepository countryRepository;
+    private final static Logger logger = LoggerFactory.getLogger(WarningServiceImplementation.class);
 
     @Autowired
     public WarningServiceImplementation(
@@ -31,20 +40,34 @@ public class WarningServiceImplementation implements WarningServiceContract {
 
 
     @Override
-    public WarningDTO createWarning(WarningDTO warningDTO) {
-        Warning warning = warningMapper.toEntity(warningDTO);
+    public List<WarningDTO> getAllWarnings() {
+        List<Warning> warnings = warningRepository.findAll();
 
-        Country country = countryRepository.findByName(warningDTO.countryName())
-                .orElseThrow(() -> new CountryNotFound(warningDTO.countryName()));
-
-        warning.setCountry(country);
-
-        Warning savedWarning = warningRepository.save(warning);
-
-        return warningMapper.toDTO(savedWarning);
+        return warnings.stream()
+                .map(warningMapper::toDTO)
+                .toList();
     }
 
     @Override
+    @Transactional
+    public void createWarning(WarningDTO warningDTO) {
+        Warning warning = warningMapper.toEntity(warningDTO);
+
+        logger.debug(warning.toString());
+
+        Country country = countryRepository.findByCode(warningDTO.countryCode())
+                .orElseThrow(() -> new CountryNotFound(warningDTO.countryCode()));
+
+        warning.setCountry(country);
+        warning.setId(null);
+
+        logger.debug(warning.toString());
+
+        warningRepository.save(warning);
+    }
+
+    @Override
+    @Transactional
     public void deleteWarning(int id) {
         if(!warningRepository.existsById(id)) {
             throw new WarningNotFound(id);
@@ -54,16 +77,13 @@ public class WarningServiceImplementation implements WarningServiceContract {
     }
 
     @Override
-    public WarningDTO updateWarning(WarningDTO warningDTO) {
-        Warning existingWarning = warningRepository.findById(warningDTO.id())
-                .orElseThrow(() -> new WarningNotFound(warningDTO.id()));
+    @Transactional
+    public void updateWarning(WarningDTO warningDTO) {
+        Warning existingWarning = warningRepository.findByCountryCode(warningDTO.countryCode())
+                .orElseThrow(() -> new WarningNotFound(warningDTO.countryCode()));
 
-        Country warningDTOCountry = countryRepository.findByName(warningDTO.countryName())
-                .orElseThrow(() -> new CountryNotFound(warningDTO.countryName()));
-
-        existingWarning.setCountry(warningDTOCountry);
         existingWarning.setDescription(warningDTO.description());
 
-        return warningMapper.toDTO(warningRepository.save(existingWarning));
+        warningRepository.save(existingWarning);
     }
 }

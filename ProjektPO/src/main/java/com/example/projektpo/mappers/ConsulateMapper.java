@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ConsulateMapper {
 
-    @Mapping(target = "countryName", source = "country.name")
+    @Mapping(target = "countryName", source = "country.code")
     ConsulateDTO toDTO(Consulate consulate);
 
     @Mapping(target = "country", ignore = true)
