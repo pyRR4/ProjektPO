@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Declare Stages</title>
     <link rel="stylesheet" th:href="@{/styles/style.css}">
-    <script src="/scripts/registerstage.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,8 +15,8 @@
                 <p>Ministerstwo<br>Spraw<br>Zagranicznych</p>
             </div>
         </header>
-        <form class="form" th:action="@{/register_stage}" method="post">
-            <input type="hidden" name="id" th:value="${stage?.getId()}">
+        <form class="form" th:action="@{/edit_stage}" method="post">
+            <input type="hidden" name="stageId" th:value="${stageId}">
             <section class="stage-info">
                 <h2>Date</h2>
                 <div class="input-group">
@@ -51,6 +50,7 @@
 
     </div>
 
+    <script src="../static/scripts/stage.js"></script>
 
 </body>
 </html>

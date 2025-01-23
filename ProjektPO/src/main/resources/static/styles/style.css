@@ -48,7 +48,7 @@ form .form section {
   margin-bottom: 20px;
 }
 
-form h2 {
+form h2, h3, h4 {
   font-size: 1.2em;
   margin-bottom: 10px;
 }
@@ -71,6 +71,7 @@ form h2 {
   font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .submit-button {
@@ -84,6 +85,7 @@ form h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .submit-button:hover {
@@ -92,7 +94,7 @@ form h2 {
 
 .edit-delete-button {
   display: block;
-  width: 100%;
+  width: 200px;
   padding: 7px;
   font-size: 0.8em;
   text-align: center;
@@ -101,6 +103,7 @@ form h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .edit-delete-button:hover {
