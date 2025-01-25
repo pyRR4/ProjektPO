@@ -97,6 +97,11 @@
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
+            if (!countrySelect.value && !codeInput.value && codeInput.value < 2) {
+                alert("Failed to add consulate. Incorrect data.");
+                return;
+            }
+
             const payload = {
                 id: Number(consulateId),
                 code: codeInput.value,

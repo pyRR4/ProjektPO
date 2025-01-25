@@ -22,9 +22,9 @@ public class Warning {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "country", nullable = false, referencedColumnName = "id", unique = true)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "country", nullable = false, referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Country country;
 
     @Column(nullable = false)

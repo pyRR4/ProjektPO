@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset igor_podg:1
+--changeset igor_podg:2
 
 INSERT INTO countries (name, code) VALUES
     ('USA', 'USA'),
