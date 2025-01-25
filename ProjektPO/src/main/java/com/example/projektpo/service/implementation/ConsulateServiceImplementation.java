@@ -93,10 +93,16 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     @Transactional
     @Override
     public void deleteConsulate(int consulateId) {
-        if (!consulateRepository.existsById(consulateId)) {
-            throw new ConsulateNotFound(consulateId);
-        }
-
-        consulateRepository.deleteById(consulateId);
+        consulateRepository.findById(consulateId).ifPresentOrElse(
+                consulate -> {
+                    consulateRepository.delete(consulate);
+                    consulateRepository.flush();
+                    logger.debug("Consulate deleted successfully: " + consulateId);
+                },
+                () -> {
+                    logger.error("Consulate not found: " + consulateId);
+                    throw new ConsulateNotFound(consulateId);
+                }
+        );
     }
 }

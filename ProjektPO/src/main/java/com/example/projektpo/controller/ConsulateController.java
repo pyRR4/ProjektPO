@@ -1,97 +1,95 @@
 package com.example.projektpo.controller;
 
-
 import com.example.projektpo.dto.ConsulateDTO;
-import com.example.projektpo.dto.CountryDTO;
 import com.example.projektpo.exception.ConsulateNotFound;
 import com.example.projektpo.service.contract.ConsulateServiceContract;
-import com.example.projektpo.service.contract.CountryServiceContract;
-import com.example.projektpo.service.implementation.ConsulateServiceImplementation;
-import com.example.projektpo.service.implementation.CountryServiceImplementation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/consulates")
+@RestController
+@RequestMapping("/api/consulates")
 public class ConsulateController {
 
     private final ConsulateServiceContract consulateService;
-    private final CountryServiceContract countryService;
     public static final Logger logger = LoggerFactory.getLogger(ConsulateController.class);
 
     @Autowired
     public ConsulateController(
-            ConsulateServiceImplementation consulateService,
-            CountryServiceImplementation countryService
+            ConsulateServiceContract consulateService
     ) {
         this.consulateService = consulateService;
-        this.countryService = countryService;
     }
 
-
     @GetMapping
-    public String getConsulates(Model model) {
+    public ResponseEntity<List<ConsulateDTO>> getAllConsulates() {
         List<ConsulateDTO> consulates = consulateService.getAllConsulates();
-        List<CountryDTO> countries = countryService.getAllCountries();
-
-        model.addAttribute("consulates", consulates);
-        model.addAttribute("countries", countries);
-        model.addAttribute("consulate", new ConsulateDTO());
-
-        return "crud_layout";
+        return ResponseEntity
+                .ok()
+                .body(consulates);
     }
 
     @GetMapping("/filter")
-    public String filterConsulates(@ModelAttribute String countryName, Model model) {
+    public ResponseEntity<List<ConsulateDTO>> filterConsulates(@RequestParam String countryName) {
         List<ConsulateDTO> consulates = consulateService.getAllConsulatesByCountry(countryName);
-
-        model.asMap().put("consulates", consulates);
-
-        return "redirect:/consulates";
+        return ResponseEntity
+                .ok()
+                .body(consulates);
     }
 
-    @PostMapping("/create")
-    public String createConsulate(@ModelAttribute ConsulateDTO consulateDTO) {
+    @PostMapping
+    public ResponseEntity<Void> createConsulate(@RequestBody ConsulateDTO consulateDTO) {
         logger.debug(consulateDTO.toString());
         consulateService.createConsulate(consulateDTO);
-
-        return "redirect:/consulates";
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
     }
 
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable int id, Model model) {
+    @GetMapping("/{id}")
+    public ResponseEntity<ConsulateDTO> getConsulateById(@PathVariable int id) {
         try {
             ConsulateDTO consulateDTO = consulateService.getConsulateById(id);
-            List<CountryDTO> countries = countryService.getAllCountries();
-
-            model.addAttribute("consulate", consulateDTO);
-            model.addAttribute("countries", countries);
+            return ResponseEntity
+                    .ok()
+                    .body(consulateDTO);
         } catch (ConsulateNotFound e) {
-            return "redirect:/consulates";
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
         }
-        return "edit";
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateConsulate(@PathVariable int id, @ModelAttribute ConsulateDTO consulateDTO, Model model) {
-        consulateService.updateConsulate(consulateDTO);
-
-        return "redirect:/consulates";
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateConsulate(@PathVariable int id, @RequestBody ConsulateDTO consulateDTO) {
+        try {
+            consulateService.updateConsulate(consulateDTO);
+            return ResponseEntity
+                    .noContent()
+                    .build();
+        } catch (ConsulateNotFound e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteConsulate(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteConsulate(@PathVariable int id) {
         try {
             consulateService.deleteConsulate(id);
+            return ResponseEntity
+                    .noContent()
+                    .build();
         } catch (ConsulateNotFound e) {
-
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
         }
-        return "redirect:/consulates";
     }
 }

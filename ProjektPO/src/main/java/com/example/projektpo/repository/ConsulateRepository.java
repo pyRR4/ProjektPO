@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ConsulateRepository extends JpaRepository<Consulate, Long> {
+public interface ConsulateRepository extends JpaRepository<Consulate, Integer> {
 
-    public List<Consulate> findAllByCountryName(String country);
+    List<Consulate> findAllByCountryName(String country);
 
-    public Optional<Consulate> findById(int id);
+    Optional<Consulate> findById(int id);
 
-    public boolean existsById(int id);
+    boolean existsById(int id);
 
-    public void deleteById(int id);
+    void deleteById(int id);
 }

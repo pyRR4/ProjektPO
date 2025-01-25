@@ -24,7 +24,7 @@ public class Consulate {
     @Column(unique = true, nullable = false)
     private String code;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "country", nullable = false, referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Country country;
