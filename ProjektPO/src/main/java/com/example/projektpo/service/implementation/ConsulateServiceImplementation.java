@@ -45,8 +45,8 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     }
 
     @Override
-    public List<ConsulateDTO> getAllConsulatesByCountry(String name) {
-        List<Consulate> consulates = consulateRepository.findAllByCountryName(name);
+    public List<ConsulateDTO> getAllConsulatesByCountry(String code) {
+        List<Consulate> consulates = consulateRepository.findAllByCountryCode(code);
 
         return consulateMapper.toDTOList(consulates);
     }
@@ -65,7 +65,7 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
     public ConsulateDTO createConsulate(ConsulateDTO consulateDTO) {
         Consulate consulate = consulateMapper.toEntity(consulateDTO);
 
-        Country country = countryRepository.findByName(consulateDTO.countryName())
+        Country country = countryRepository.findByCode(consulateDTO.countryName())
                         .orElseThrow(() -> new CountryNotFound(consulateDTO.countryName()));
 
         consulate.setCountry(country);
@@ -80,7 +80,7 @@ public class ConsulateServiceImplementation implements ConsulateServiceContract 
         Consulate existingConsulate = consulateRepository.findById(consulateDTO.id())
                 .orElseThrow(() -> new ConsulateNotFound(consulateDTO.code()));
 
-        Country consulateDTOCountry = countryRepository.findByName(consulateDTO.countryName())
+        Country consulateDTOCountry = countryRepository.findByCode(consulateDTO.countryName())
                 .orElseThrow(() -> new CountryNotFound(consulateDTO.countryName()));
 
         existingConsulate.setCode(consulateDTO.code());

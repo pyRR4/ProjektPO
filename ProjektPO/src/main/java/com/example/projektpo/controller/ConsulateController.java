@@ -34,8 +34,9 @@ public class ConsulateController {
                 .body(consulates);
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<List<ConsulateDTO>> filterConsulates(@RequestParam String countryName) {
+    @GetMapping("/filter/{countryName}")
+    public ResponseEntity<List<ConsulateDTO>> filterConsulates(@PathVariable String countryName) {
+        logger.debug(countryName);
         List<ConsulateDTO> consulates = consulateService.getAllConsulatesByCountry(countryName);
         return ResponseEntity
                 .ok()

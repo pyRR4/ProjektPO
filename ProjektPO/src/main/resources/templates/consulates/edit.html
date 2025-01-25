@@ -54,7 +54,7 @@
         </div>
 
         <div class="flex justify-center items-end mt-4">
-            <a href="/templates/consulatesconsulates" class="bg-red-500 text-white px-20 py-2 rounded-lg hover:bg-red-600">Cancel</a>
+            <a href="/consulates" class="bg-red-500 text-white px-20 py-2 rounded-lg hover:bg-red-600">Cancel</a>
         </div>
         <footer class="mt-6 text-center text-gray-500 text-sm">
             &copy; 2024 Ministerstwo Spraw Zagranicznych
@@ -80,7 +80,7 @@
             const countries = await fetchCountries();
             countries.forEach((country) => {
                 const option = document.createElement("option");
-                option.value = country.name;
+                option.value = country.code;
                 option.textContent = country.name;
                 countrySelect.appendChild(option);
             });

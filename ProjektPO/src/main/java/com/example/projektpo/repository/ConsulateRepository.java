@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ConsulateRepository extends JpaRepository<Consulate, Integer> {
 
-    List<Consulate> findAllByCountryName(String country);
+    List<Consulate> findAllByCountryCode(String code);
 
     Optional<Consulate> findById(int id);
 

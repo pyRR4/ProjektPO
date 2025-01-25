@@ -80,7 +80,9 @@
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
         const countrySelect = document.getElementById("consulate-country");
+        const filterSelect = document.getElementById("filter-country");
         const form = document.getElementById("add-consulate-form");
+        const filterForm = document.getElementById("filter-form");
         const consulateTable = document.querySelector("#consulate-table tbody");
         const successMessage = document.createElement("div");
 
@@ -89,19 +91,8 @@
         successMessage.setAttribute("role", "alert");
         form.parentNode.insertBefore(successMessage, form);
 
-        // Fetch countries for the dropdown
-        try {
-            const countries = await fetchCountries();
-            countries.forEach((country) => {
-                const option = document.createElement("option");
-                option.value = country.name;
-                option.textContent = country.name;
-                countrySelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error(error);
-            alert("Failed to load countries. Please try again later.");
-        }
+        await populateCountriesDropdown(countrySelect)
+        await populateCountriesDropdown(filterSelect)
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -111,7 +102,7 @@
             };
 
             try {
-                await createConsulate(payload)
+                await createConsulate(payload);
 
                 successMessage.textContent = "Consulate added successfully";
                 successMessage.classList.remove("hidden");
@@ -129,9 +120,48 @@
             }
         });
 
+        filterForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const selectedCountry = filterSelect.value;
+                console.log(selectedCountry)
+
+                if (!selectedCountry) {
+                    return;
+                }
+
+                await fetchConsulatesByCountryAndUpdateTable(selectedCountry);
+            }
+        )
 
 
+        async function populateCountriesDropdown(select) {
+            try {
+                const countries = await fetchCountries();
+                countries.forEach((country) => {
+                    const option = document.createElement("option");
+                    option.value = country.code;
+                    option.textContent = country.name;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error(error);
+                alert("Failed to load countries. Please try again later.");
+            }
+        }
 
+        async function fetchConsulatesByCountryAndUpdateTable(countryName) {
+            console.log("RELOADING PAGE")
+            try {
+                console.log(countryName)
+                const consulates = await fetchConsulatesByCountry(countryName);
+
+                consulateTable.innerHTML = "";
+                populateTable(consulates)
+            } catch (error) {
+                console.error(error);
+                alert("Failed to fetch consulates. Please try again.");
+            }
+        }
 
         async function fetchConsulatesAndUpdateTable() {
             console.log("RELOADING PAGE")
@@ -139,10 +169,17 @@
                 const consulates = await fetchConsulates();
 
                 consulateTable.innerHTML = "";
+                populateTable(consulates)
+            } catch (error) {
+                console.error(error);
+                alert("Failed to fetch consulates. Please try again.");
+            }
+        }
 
-                consulates.forEach((consulate, index) => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
+        function populateTable(consulates) {
+            consulates.forEach((consulate, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
                         <td class="border px-4 py-2">${index + 1}</td>
                         <td class="border px-4 py-2">${consulate.code}</td>
                         <td class="border px-4 py-2">${consulate.countryName}</td>
@@ -159,12 +196,8 @@
                             </button>
                         </td>
                     `;
-                    consulateTable.appendChild(row);
-                });
-            } catch (error) {
-                console.error(error);
-                alert("Failed to fetch consulates. Please try again.");
-            }
+                consulateTable.appendChild(row);
+            });
         }
 
         window.handleDeleteConsulate = async function (id) {

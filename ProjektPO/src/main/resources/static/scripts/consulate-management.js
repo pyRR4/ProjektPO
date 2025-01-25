@@ -21,6 +21,18 @@ async function fetchConsulates() {
 }
 
 /**
+ * Fetches all countries from the backend.
+ * @param {string} countryName
+ * @returns {Promise<Array>} List of countries
+ */
+async function fetchConsulatesByCountry(countryName) {
+    console.log(countryName)
+    const response = await fetch(`${apiBase}/consulates/filter/${countryName}`);
+    if (!response.ok) throw new Error("Failed to fetch countries");
+    return response.json();
+}
+
+/**
  * Fetches consulate details by ID.
  * @param {string} consulateId
  * @returns {Promise<Object>} Consulate details
