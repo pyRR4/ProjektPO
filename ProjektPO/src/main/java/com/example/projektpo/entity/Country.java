@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(of = {"id", "name", "code"})
 @Entity(
         name = "countries"
 )

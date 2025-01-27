@@ -97,8 +97,8 @@
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            if (!countrySelect.value && !codeInput.value && codeInput.value < 2) {
-                alert("Failed to add consulate. Incorrect data.");
+            if (!countrySelect.value || !codeInput.value || (codeInput.value).length < 2) {
+                alert("Failed to update consulate. Incorrect data.");
                 return;
             }
 

@@ -69,8 +69,6 @@ public class JobScheduler {
 
         logger.debug(currentWarnings.toString());
 
-        List<WarningDTO> newWarnings = new ArrayList<>();
-        List<WarningDTO> updatedWarnings = new ArrayList<>();
         List<WarningDTO> removedWarnings = new ArrayList<>(currentWarnings);
 
         for (WarningDTO externalWarning : externalWarnings) {
@@ -81,16 +79,14 @@ public class JobScheduler {
             if (existingWarningOpt.isPresent()) {
                 WarningDTO existingWarning = existingWarningOpt.get();
                 if (!existingWarning.equals(externalWarning)) {
-                    updatedWarnings.add(externalWarning);
+                    warningService.updateWarning(externalWarning);
                 }
                 removedWarnings.remove(existingWarning);
             } else {
-                newWarnings.add(externalWarning);
+                warningService.createWarning(externalWarning);
             }
         }
 
         removedWarnings.forEach(warning -> warningService.deleteWarning(warning.id()));
-        newWarnings.forEach(warningService::createWarning);
-        updatedWarnings.forEach(warningService::updateWarning);
     }
 }

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4548b6c6-2e60-4db1-a3cb-90effffc6c39" name="Changes" comment="" />
+    <list default="true" id="4548b6c6-2e60-4db1-a3cb-90effffc6c39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjektPO/src/main/java/com/example/projektpo/entity/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjektPO/src/main/java/com/example/projektpo/entity/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjektPO/src/main/java/com/example/projektpo/service/implementation/JobScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjektPO/src/main/java/com/example/projektpo/service/implementation/JobScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjektPO/src/main/resources/database/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjektPO/src/main/resources/database/seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjektPO/src/main/resources/templates/consulates.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjektPO/src/main/resources/templates/consulates.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjektPO/src/main/resources/templates/consulates/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjektPO/src/main/resources/templates/consulates/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Szablon projektu.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Szablon projektu.vpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,8 +27,20 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "pyRR4"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pyRR4/ProjektPO.git",
+    "accountId": "5339b970-22b8-4e0e-b4e8-ff3d8b345d27"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -48,9 +68,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.ExternalSystemSimulationApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "CRUD-consulate",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/igopo/OneDrive/Pulpit/Wszystko i nic/IST 22-27/V sem/PO/ProjektPO/ProjektPO",
+    "last_opened_file_path": "C:/Users/igopo/OneDrive/Pulpit/Wszystko i nic/IST 22-27/V sem/PO/ProjektPO/ProjektPO/ExternalSystemSimulation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737583738003</updated>
       <workItem from="1737583739154" duration="4231000" />
+      <workItem from="1737844379770" duration="4925000" />
     </task>
     <servers />
   </component>
